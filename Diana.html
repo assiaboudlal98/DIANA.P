@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diana Shop</title>
+    <link rel="stylesheet" href="Diana.css" />
+  </head>
+  <body>
+    <header class="header justify-between">
+      <div>
+        <nav class="navbar">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="diana">
+        <h1><em>Diana</em></h1>
+      </div>
+      <div class="cart">
+        <div class="title"></div>
+        <div class="icon-cart" id="cartIcon">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
+            />
+          </svg>
+        </div>
+        <span id="cartCount">0</span>
+      </div>
+      <div class="search">
+        <input type="text" id="searchInput" placeholder="Search for products..." />
+        <button id="searchButton">Search</button>
+      </div>
+    </header>
+
+    <!-- Product Items -->
+    <div class="row" id="productItems">
+      <div class="ListProduct">
+        <div class="item">
+          <a href="mug.html" target="_blank">
+            <img src="image1.jpeg" height="250px" alt="skull" />
+          </a>
+          <h2>Skull mug</h2>
+          <div class="price">$19.99</div>
+          <button class="add-to-cart" data-product-id="1">Add To Cart</button>
+        </div>
+      </div>
+      <div class="ListProduct">
+        <div class="item">
+          <a href="peaks.html" target="_blank">
+            <img src="image2.jpeg" height="250px" alt="peaks" />
+          </a>
+          <h2>Peaks hoodie</h2>
+          <div class="price">$25.57</div>
+          <button class="add-to-cart" data-product-id="2">Add To Cart</button>
+        </div>
+      </div>
+      <div class="ListProduct">
+        <div class="item">
+          <a href="phone-case.html" target="_blank">
+            <img src="image3.jpeg" height="250px" alt="phone case" />
+          </a>
+          <h2>Phone case</h2>
+          <div class="price">$17.99</div>
+          <button class="add-to-cart" data-product-id="3">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="closeCartModal">&times;</span>
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <div id="cartTotal"></div>
+        <button id="goToPurchasePage">Go to Purchase Page</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 In Memory of Diana. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Product data simulation
+      const productData = {
+        1: { name: 'Skull mug', price: 19.99, image: 'image1.jpeg', link: 'mug.html' },
+        2: { name: 'Peaks hoodie', price: 25.57, image: 'image2.jpeg', link: 'peaks.html' },
+        3: { name: 'Phone case', price: 17.99, image: 'image3.jpeg', link: 'phone-case.html' }
+      };
+
+      // Cart data
+      const cart = {};
+
+      // Function to update cart count
+      function updateCartCount() {
+        const cartCountElement = document.getElementById('cartCount');
+        const totalCount = Object.values(cart).reduce((acc, count) => acc + count, 0);
+        cartCountElement.textContent = totalCount;
+      }
+
+      // Function to open cart modal
+      function openCartModal() {
+        const cartModal = document.getElementById('cartModal');
+        const cartItemsList = document.getElementById('cartItems');
+        const cartTotalElement = document.getElementById('cartTotal');
+
+        cartItemsList.innerHTML = '';
+        let total = 0;
+
+        for (const productId in cart) {
+          const product = productData[productId];
+          const count = cart[productId];
+          total += product.price * count;
+
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="cart-item-image">
+            ${product.name} - $${product.price} x ${count}
+          `;
+          cartItemsList.appendChild(li);
+        }
+
+        cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+        cartModal.style.display = 'block';
+      }
+
+      // Function to close cart modal
+      function closeCartModal() {
+        const cartModal = document.getElementById('cartModal');
+        cartModal.style.display = 'none';
+      }
+
+      // Add to cart function
+      function addToCart(productId) {
+        if (!cart[productId]) {
+          cart[productId] = 0;
+        }
+        cart[productId]++;
+        updateCartCount();
+        console.log(`Product ${productId} added to cart.`);
+      }
+
+      // Redirect to purchase page
+      function goToPurchasePage() {
+        const cartData = JSON.stringify(cart);
+        localStorage.setItem('cart', cartData);
+        window.location.href = 'purchase.html';
+      }
+
+      // Search functionality
+      document.getElementById('searchButton').addEventListener('click', function () {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const productItemsContainer = document.getElementById('productItems');
+        productItemsContainer.innerHTML = '';
+
+        Object.entries(productData).forEach(([id, product]) => {
+          if (product.name.toLowerCase().includes(query)) {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('ListProduct');
+            productDiv.innerHTML = `
+              <div class="item">
+                <a href="${product.link}" target="_blank">
+                  <img src="${product.image}" height="250px" alt="${product.name}" />
+                </a>
+                <h2>${product.name}</h2>
+                <div class="price">$${product.price}</div>
+                <button class="add-to-cart" data-product-id="${id}">Add To Cart</button>
+              </div>
+            `;
+            productItemsContainer.appendChild(productDiv);
+          }
+        });
+
+        // Re-attach event listeners to new "Add to Cart" buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+          button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            addToCart(productId);
+          });
+        });
+      });
+
+      // Event listeners
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const productId = this.getAttribute('data-product-id');
+          addToCart(productId);
+        });
+      });
+
+      document.getElementById('cartIcon').addEventListener('click', openCartModal);
+      document.getElementById('closeCartModal').addEventListener('click', closeCartModal);
+      document.getElementById('goToPurchasePage').addEventListener('click', goToPurchasePage);
+    </script>
+  </body>
+</html>

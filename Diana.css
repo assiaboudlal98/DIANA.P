@@ -1,0 +1,241 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+/* Navbar Styles */
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar li {
+  margin-right: 15px;
+}
+
+.navbar a {
+  color: black;
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.icon-cart {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+span {
+  display: flex;
+  align-items: center;
+  color: #000000;
+  margin-left: 5px;
+}
+
+/* Search Bar Styles */
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+#searchInput {
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  width: 10vw;
+}
+
+#searchButton {
+  padding: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+#searchButton:hover {
+  background-color: #333;
+}
+
+#searchResults {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+  z-index: 100;
+}
+
+#searchResults li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#searchResults li:hover {
+  background-color: #f4f4f4;
+}
+
+/* Product List Styles */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.ListProduct {
+  padding: 15px;
+}
+
+.item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 250px;
+  max-width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Bottom shadow */
+}
+
+.item:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+.item img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.item h2 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling for cart item images */
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 1em 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.diana {
+  margin-left: 30vw;
+}
+
+.cart {
+  display: flex;
+  margin-left: 20vw;
+}

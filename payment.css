@@ -1,0 +1,162 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(252, 252, 252));
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    background-color: #ffffffcc;
+    padding: 20px;
+    max-width: 90%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+/* Main Content - Flex Layout */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Product Details */
+.product-details {
+    flex: 1; /* Allows this section to grow if space permits */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px; /* Space between product details and form */
+    padding: 15px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 250px; /* Fixed size for the product image */
+    height: 250px; /* Fixed size for the product image */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.product-description {
+    text-align: center;
+}
+
+.product-price {
+    font-size: 18px;
+    color: #14306c;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Payment Form */
+.payment-form {
+    flex: 2; /* Allows this section to take more space */
+    width: 100%; /* Ensures the form uses available width */
+}
+
+/* Form Section Titles */
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+h3 {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 16px;
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="month"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="month"]:focus {
+    border-color: #ff8888;
+    outline: none;
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #621b1b, #db3434);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 800px) {
+    .main-content {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center;
+    }
+
+    .product-details {
+        margin-right: 0; /* Remove margin for center alignment */
+        margin-bottom: 20px; /* Add space between stacked sections */
+    }
+
+    .payment-form {
+        width: 100%; /* Ensure full width on smaller screens */
+    }
+}
